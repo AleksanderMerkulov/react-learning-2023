@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import List from "./components/List/List";
+import Button from "./components/Button/Button";
+import {Content} from "./components/data"
+import {useState} from "react";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [contentType, setContentType] = useState(null)
+
+    function handleClick(type) {
+
+        setContentType(type)
+    }
+
+    return (
+        <div className="container-xl App">
+            <Header/>
+            <main>
+                <section>
+                    <List/>
+                    <Button isActive={contentType==='ways'} onClick={()=>handleClick("ways")}>Пути</Button>
+                    <Button isActive={contentType==='easy'} onClick={()=>handleClick("easy")}>Возможности</Button>
+                    <Button isActive={contentType==='program'} onClick={()=>handleClick("program")}>Программа</Button>
+                    {contentType && <p>{Content[contentType]}</p> }
+                    {!contentType && <p>Нажми на кнопку</p> }
+                </section>
+            </main>
+        </div>
+    );
 }
 
 export default App;
