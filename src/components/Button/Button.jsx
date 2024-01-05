@@ -1,7 +1,7 @@
 import './Button.css'
 
-export default function Button({children, onClick, isActive}) {
+export default function Button({children, isActive, ...props}) {
     return(
-        <button className={"btn " + (isActive?"btn-success":"btn-secondary")} onClick={onClick}>{children}</button>
+        <button className={"btn " + (isActive?"btn-success":"btn-secondary")} {...props}>{children}</button>
     )
 }

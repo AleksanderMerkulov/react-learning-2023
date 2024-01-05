@@ -1,3 +1,4 @@
+import {useParams} from "react-router-dom";
 import './List.css'
 
 const data = [
@@ -19,10 +20,15 @@ const data = [
     },
 ]
 
-export default function List(){
+export default function List({id}){
 
+    const params = useParams()
 
     return(
+        <>
+        {params.id && (
+            <h1>{params.id}</h1>
+        )}
         <ul>
             {data.map((el, index)=> {
                 return(
@@ -30,5 +36,6 @@ export default function List(){
                 )
             })}
         </ul>
+        </>
     )
 }

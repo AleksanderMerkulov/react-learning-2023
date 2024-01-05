@@ -1,30 +1,24 @@
 import Header from "./components/Header";
-import List from "./components/List/List";
-import Button from "./components/Button/Button";
-import {Content} from "./components/data"
-import {useState} from "react";
+import {Link, Outlet} from "react-router-dom";
 
 
 function App() {
 
-    const [contentType, setContentType] = useState(null)
 
-    function handleClick(type) {
-
-        setContentType(type)
-    }
 
     return (
         <div className="container-xl App">
             <Header/>
+            <nav>
+                <Link to={"/list"} style={{marginRight: "10px"}}>List</Link>
+                <Link to={"/feedback"} style={{marginRight: "10px"}}>Feedback</Link>
+                <Link to={"/tabs"}>Tabs</Link>
+            </nav>
             <main>
                 <section>
-                    <List/>
-                    <Button isActive={contentType==='ways'} onClick={()=>handleClick("ways")}>Пути</Button>
-                    <Button isActive={contentType==='easy'} onClick={()=>handleClick("easy")}>Возможности</Button>
-                    <Button isActive={contentType==='program'} onClick={()=>handleClick("program")}>Программа</Button>
-                    {contentType && <p>{Content[contentType]}</p> }
-                    {!contentType && <p>Нажми на кнопку</p> }
+                    <Outlet/>
+                    {/*<List/>*/}
+                    {/*<TabButtonsSection/>*/}
                 </section>
             </main>
         </div>
