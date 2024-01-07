@@ -1,23 +1,24 @@
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import {useEffect, useState} from "react";
+import useInput from "../../hooks/useInput";
 
 export default function EffectSection() {
 
     const [isModelOpen, setIsModelOpen] = useState(false)
     const [loading, setLoading] = useState(false)
     const [users, setUsers] = useState([])
+    const input = useInput()
 
     function openModal() {
         setIsModelOpen(true)
     }
 
 
-
     useEffect(() => {
         //функция создаётся здесь, чтобы не было потерь памяти за счёт создания таких функций каждый раз при вызове компонента
         //не было объяснения почему так, но должно быть именно так
-        async function fetchUsers(){
+        async function fetchUsers() {
             setLoading(true)
             const response = await fetch('https://jsonplaceholder.typicode.com/users')
             const users = await response.json()
@@ -38,21 +39,30 @@ export default function EffectSection() {
                 <h3>Это модальное окно</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea ipsum iste maxime, nam quo soluta unde.
                     Culpa ipsam laborum perferendis!</p>
-                <Button onClick={()=>setIsModelOpen(false)}>Закрыть</Button>
+                <Button onClick={() => setIsModelOpen(false)}>Закрыть</Button>
             </Modal>
 
             {loading && (
                 <p>loading...</p>
             )}
 
-            {users && (
-                <ul>
-                    {
-                        users.map(user=>{
-                            return (<li key={user.id}>{user.name}</li>)
-                        })
-                    }
-                </ul>
+            {!loading && (
+                <>
+                    <input type="text" {...input}/>
+                    <p>{input.value}</p>
+                    <ul>
+                        {
+                            users
+                                .filter((user)=>
+                                    user.name.toLowerCase().includes(input.value.toLowerCase())
+                                )
+                                .map(user => {
+                                return (<li key={user.id}>{user.name}</li>)
+                            })
+                        }
+                    </ul>
+                </>
+
             )}
         </section>
     )
