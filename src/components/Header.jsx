@@ -1,11 +1,20 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function Header() {
     const [date, setDate] = useState(new Date())
 
-    setTimeout(()=>{
-        setDate(new Date())
-    }, 1000)
+
+    useEffect(() => {
+        const timer = setInterval(()=>{
+            setDate(new Date())
+        }, 1000)
+
+        return (()=>{
+            clearInterval(timer)
+        })
+    }, []);
+
+
 
     return (
         <header>
