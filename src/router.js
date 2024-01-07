@@ -27,7 +27,8 @@ export const Router = createBrowserRouter([
                 element:<TabButtonsSection/>
             },
             {
-                path: "effect/",
+                // path: "effect/",
+                path: "/",
                 element: <EffectSection/>
             }
         ]
