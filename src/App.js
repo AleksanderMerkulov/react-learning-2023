@@ -12,7 +12,8 @@ function App() {
             <nav>
                 <Link to={"/list"} style={{marginRight: "10px"}}>List</Link>
                 <Link to={"/feedback"} style={{marginRight: "10px"}}>Feedback</Link>
-                <Link to={"/tabs"}>Tabs</Link>
+                <Link to={"/tabs"} style={{marginRight: "10px"}}>Tabs</Link>
+                <Link to={"/effect"} style={{marginRight: "10px"}}>Effect</Link>
             </nav>
             <main>
                 <section>

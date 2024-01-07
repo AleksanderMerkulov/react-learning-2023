@@ -3,6 +3,7 @@ import App from "./App";
 import List from "./components/List/List";
 import TabButtonsSection from "./components/TabButtonsSection";
 import Feedback from "./Feedback";
+import EffectSection from "./components/EffectSection/EffectSection";
 
 export const Router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ export const Router = createBrowserRouter([
                 path:"tabs/",
                 element:<TabButtonsSection/>
             },
+            {
+                path: "effect/",
+                element: <EffectSection/>
+            }
         ]
     },
 ]);
