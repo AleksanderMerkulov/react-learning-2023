@@ -4,6 +4,7 @@ import List from "./components/List/List";
 import TabButtonsSection from "./components/TabButtonsSection";
 import Feedback from "./Feedback";
 import EffectSection from "./components/EffectSection/EffectSection";
+import TestAPI from "./components/TestAPI";
 
 export const Router = createBrowserRouter([
     {
@@ -13,6 +14,10 @@ export const Router = createBrowserRouter([
             {
                 path:"feedback/",
                 element:<Feedback/>
+            },
+            {
+                path: 'testapi',
+                element: <TestAPI/>
             },
             {
                 path:"list/",
